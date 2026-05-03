@@ -3,7 +3,8 @@ FROM golang:1.23-alpine AS builder
 ARG GOPROXY=https://goproxy.cn,direct
 ARG ALPINE_MIRROR=mirrors.aliyun.com
 
-RUN sed -i "s/dl-cdn.alpinelinux.org/${ALPINE_MIRROR}/g" /etc/apk/repositories
+RUN sed -i "s/dl-cdn.alpinelinux.org/${ALPINE_MIRROR}/g" /etc/apk/repositories && \
+    apk --no-cache add gcc musl-dev
 
 WORKDIR /build
 

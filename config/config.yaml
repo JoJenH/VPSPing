@@ -1,0 +1,26 @@
+vps:
+  - name: "Tokyo-1"
+    host: "tokyo1.example.com"
+    enabled: true
+  - name: "Singapore-1"
+    host: "sg1.example.com"
+    enabled: true
+  - name: "US-West-1"
+    host: "us-west-1.example.com"
+    enabled: false
+
+ping:
+  interval: "15m"
+  count: 4
+  timeout: "5s"
+  privileged: true
+
+storage:
+  database: "./data/vpsping.db"
+  log_file: "./logs/vpsping.log"
+  json_output: "./output/results.json"
+
+display:
+  chart_width: 80
+  chart_height: 20
+  time_range: "24h"

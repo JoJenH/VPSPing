@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  vpsping:
+    build: .
+    container_name: vpsping
+    restart: unless-stopped
+    volumes:
+      - ./config:/app/config:ro
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./output:/app/output
+    environment:
+      - TZ=Asia/Shanghai
+    networks:
+      - vpsping-network
+
+networks:
+  vpsping-network:
+    driver: bridge

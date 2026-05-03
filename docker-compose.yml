@@ -6,7 +6,7 @@ services:
       context: .
       args:
         - GOPROXY=${GOPROXY:-https://goproxy.cn,direct}
-        - ALPINE_MIRROR=${ALPINE_MIRROR:-https://mirrors.aliyun.com/alpine}
+        - ALPINE_MIRROR=${ALPINE_MIRROR:-mirrors.aliyun.com}
     container_name: vpsping
     restart: unless-stopped
     volumes:

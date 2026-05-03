@@ -31,7 +31,7 @@ docker build -t vpsping:latest .
 # 构建镜像（自定义代理）
 docker build \
   --build-arg GOPROXY=https://goproxy.io,direct \
-  --build-arg ALPINE_MIRROR=https://mirrors.tuna.tsinghua.edu.cn/alpine \
+  --build-arg ALPINE_MIRROR=mirrors.tuna.tsinghua.edu.cn \
   -t vpsping:latest .
 
 # 运行容器
@@ -49,7 +49,7 @@ docker run -d \
 
 Dockerfile 默认使用以下代理：
 - **Go 模块代理**: `https://goproxy.cn,direct`
-- **Alpine 镜像源**: `https://mirrors.aliyun.com/alpine`
+- **Alpine 镜像源**: `mirrors.aliyun.com`（仅域名）
 
 可用的代理选项：
 - **Go 模块代理**:
@@ -57,10 +57,10 @@ Dockerfile 默认使用以下代理：
   - `https://goproxy.io,direct` (全球加速)
   - `https://proxy.golang.org,direct` (官方)
   
-- **Alpine 镜像源**:
-  - `https://mirrors.aliyun.com/alpine` (阿里云)
-  - `https://mirrors.tuna.tsinghua.edu.cn/alpine` (清华)
-  - `https://mirrors.ustc.edu.cn/alpine` (中科大)
+- **Alpine 镜像源**（仅域名，不包含协议和路径）:
+  - `mirrors.aliyun.com` (阿里云)
+  - `mirrors.tuna.tsinghua.edu.cn` (清华)
+  - `mirrors.ustc.edu.cn` (中科大)
 
 ### 使用 Docker Compose
 

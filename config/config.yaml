@@ -1,13 +1,19 @@
 vps:
-  - name: "Tokyo-1"
-    host: "tokyo1.example.com"
+  - name: "Dallas-TX"
+    host: "198.23.249.100"
     enabled: true
-  - name: "Singapore-1"
-    host: "sg1.example.com"
+  - name: "Chicago-IL"
+    host: "198.23.228.15"
     enabled: true
-  - name: "US-West-1"
-    host: "us-west-1.example.com"
-    enabled: false
+  - name: "San-Jose-CA"
+    host: "192.210.207.88"
+    enabled: true
+  - name: "New-York"
+    host: "192.3.81.8"
+    enabled: true
+  - name: "Seattle"
+    host: "192.3.253.2"
+    enabled: true
 
 ping:
   interval: "15m"

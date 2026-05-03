@@ -84,6 +84,8 @@ docker-compose down
 docker-compose build --no-cache
 ```
 
+**注意**：Docker Compose 配置了特权模式（`privileged: true`）和网络权限（`NET_RAW`, `NET_ADMIN`），这是 ICMP Ping 所必需的。如果不需要特权模式，可以在配置文件中设置 `privileged: false`。
+
 ### 系统要求
 
 - Go 1.25 或更高版本

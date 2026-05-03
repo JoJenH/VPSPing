@@ -9,6 +9,10 @@ services:
         - ALPINE_MIRROR=${ALPINE_MIRROR:-mirrors.aliyun.com}
     container_name: vpsping
     restart: unless-stopped
+    privileged: true
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
     volumes:
       - ./config:/app/config:ro
       - ./data:/app/data

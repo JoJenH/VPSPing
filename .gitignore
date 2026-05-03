@@ -1,6 +1,6 @@
 # Binaries
-vpsping
-vpsping-*
+/vpsping
+/vpsping-*
 *.exe
 *.exe~
 *.dll

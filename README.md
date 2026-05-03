@@ -86,9 +86,11 @@ docker-compose build --no-cache
 
 ### 系统要求
 
-- Go 1.21 或更高版本
+- Go 1.23 或更高版本（支持 Go 1.25+）
 - macOS / Linux / Windows
 - ICMP Ping 可能需要 root/管理员权限
+
+**注意**：Docker 构建时会自动下载所需的 Go 工具链版本。
 
 ## 快速开始
 

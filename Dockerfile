@@ -1,4 +1,4 @@
-FROM golang:1.21-alpine AS builder
+FROM golang:1.23-alpine AS builder
 
 ARG GOPROXY=https://goproxy.cn,direct
 ARG ALPINE_MIRROR=mirrors.aliyun.com
@@ -8,6 +8,7 @@ RUN sed -i "s/dl-cdn.alpinelinux.org/${ALPINE_MIRROR}/g" /etc/apk/repositories
 WORKDIR /build
 
 ENV GOPROXY=${GOPROXY}
+ENV GOTOOLCHAIN=auto
 
 COPY go.mod go.sum ./
 RUN go mod download

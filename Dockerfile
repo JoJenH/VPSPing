@@ -1,6 +1,13 @@
 FROM golang:1.21-alpine AS builder
 
+ARG GOPROXY=https://goproxy.cn,direct
+ARG ALPINE_MIRROR=https://mirrors.aliyun.com/alpine
+
+RUN sed -i "s/dl-cdn.alpinelinux.org/${ALPINE_MIRROR}/g" /etc/apk/repositories
+
 WORKDIR /build
+
+ENV GOPROXY=${GOPROXY}
 
 COPY go.mod go.sum ./
 RUN go mod download
@@ -11,7 +18,10 @@ RUN CGO_ENABLED=1 GOOS=linux go build -a -installsuffix cgo -o vpsping ./cmd/vps
 
 FROM alpine:latest
 
-RUN apk --no-cache add ca-certificates sqlite
+ARG ALPINE_MIRROR=https://mirrors.aliyun.com/alpine
+
+RUN sed -i "s/dl-cdn.alpinelinux.org/${ALPINE_MIRROR}/g" /etc/apk/repositories && \
+    apk --no-cache add ca-certificates sqlite
 
 WORKDIR /app
 

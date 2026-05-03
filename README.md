@@ -25,8 +25,14 @@ go build -o vpsping ./cmd/vpsping
 ### 使用 Docker
 
 ```bash
-# 构建镜像
+# 构建镜像（使用默认代理）
 docker build -t vpsping:latest .
+
+# 构建镜像（自定义代理）
+docker build \
+  --build-arg GOPROXY=https://goproxy.io,direct \
+  --build-arg ALPINE_MIRROR=https://mirrors.tuna.tsinghua.edu.cn/alpine \
+  -t vpsping:latest .
 
 # 运行容器
 docker run -d \
@@ -39,9 +45,32 @@ docker run -d \
   vpsping:latest
 ```
 
+#### 代理配置说明
+
+Dockerfile 默认使用以下代理：
+- **Go 模块代理**: `https://goproxy.cn,direct`
+- **Alpine 镜像源**: `https://mirrors.aliyun.com/alpine`
+
+可用的代理选项：
+- **Go 模块代理**:
+  - `https://goproxy.cn,direct` (七牛云)
+  - `https://goproxy.io,direct` (全球加速)
+  - `https://proxy.golang.org,direct` (官方)
+  
+- **Alpine 镜像源**:
+  - `https://mirrors.aliyun.com/alpine` (阿里云)
+  - `https://mirrors.tuna.tsinghua.edu.cn/alpine` (清华)
+  - `https://mirrors.ustc.edu.cn/alpine` (中科大)
+
 ### 使用 Docker Compose
 
 ```bash
+# 复制环境配置文件
+cp .env.example .env
+
+# 根据需要修改配置
+vim .env
+
 # 启动服务
 docker-compose up -d
 
@@ -50,6 +79,9 @@ docker-compose logs -f
 
 # 停止服务
 docker-compose down
+
+# 重新构建
+docker-compose build --no-cache
 ```
 
 ### 系统要求

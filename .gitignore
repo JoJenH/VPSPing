@@ -19,7 +19,7 @@ go.work
 # Data directories
 data/
 logs/
-output/
+/output/
 dist/
 
 # Database files

@@ -1,9 +1,9 @@
 FROM golang:1.21-alpine AS builder
 
 ARG GOPROXY=https://goproxy.cn,direct
-ARG ALPINE_MIRROR=https://mirrors.aliyun.com/alpine
+ARG ALPINE_MIRROR=mirrors.aliyun.com
 
-RUN sed -i "s#dl-cdn.alpinelinux.org#${ALPINE_MIRROR}#g" /etc/apk/repositories
+RUN sed -i "s/dl-cdn.alpinelinux.org/${ALPINE_MIRROR}/g" /etc/apk/repositories
 
 WORKDIR /build
 
@@ -18,9 +18,9 @@ RUN CGO_ENABLED=1 GOOS=linux go build -a -installsuffix cgo -o vpsping ./cmd/vps
 
 FROM alpine:latest
 
-ARG ALPINE_MIRROR=https://mirrors.aliyun.com/alpine
+ARG ALPINE_MIRROR=mirrors.aliyun.com
 
-RUN sed -i "s#dl-cdn.alpinelinux.org#${ALPINE_MIRROR}#g" /etc/apk/repositories && \
+RUN sed -i "s/dl-cdn.alpinelinux.org/${ALPINE_MIRROR}/g" /etc/apk/repositories && \
     apk --no-cache add ca-certificates sqlite
 
 WORKDIR /app
